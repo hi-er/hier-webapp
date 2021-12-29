@@ -1,9 +1,15 @@
 import React from "react";
 import "../screens/dashboard.css";
-class JobCard extends React.Component {
-  render() {
+import { useNavigate } from 'react-router-dom';
+
+function JobCard() {
+  let navigate = useNavigate();
+  function jobDetails() {
+    navigate('/jobdetails')
+  }
+
     return (
-      <div>
+      <div onClick={jobDetails}>
         <div className="row rowPadding1">
           <div className="col-md-2 heading1">
             <div className="headingColor">
@@ -18,6 +24,6 @@ class JobCard extends React.Component {
       </div>
     );
   }
-}
+
 
 export default JobCard;

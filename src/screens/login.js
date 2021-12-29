@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
-
+import { useNavigate } from 'react-router-dom';
 import './login.css';
 // import Firebase from "../firebase/firebase";
 
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    let navigate = useNavigate();
    function tryLogin(){
        console.log(email);
-       
+      
+       navigate("/dashboard")
    }
     return (
         <div>

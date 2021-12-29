@@ -2,14 +2,18 @@ import React from "react";
 import "./dashboard.css";
 import PreferencesButton from "../components/prefrencesButton";
 import SkillButton from "../components/skillButton";
-class JobDetails extends React.Component {
-  render() {
+import { useNavigate } from 'react-router-dom';
+function JobDetails() {
+  let navigate = useNavigate();
+  function home() {
+    navigate('/dashboard');
+}
     return (
     <div>
     <div className="row">
     <div className="col-md-12">
       
-    <img className="col-md-4 img" src="./assets/Logo.jpeg" />
+    <img onClick={home} className="col-md-4 img" src="./assets/Logo.jpeg" />
 
             
             <span className="col-md-8 myJobsTxt">
@@ -128,6 +132,6 @@ class JobDetails extends React.Component {
      
         );
   }
-}
+
 
 export default JobDetails;

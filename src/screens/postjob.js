@@ -1,14 +1,22 @@
 import React from 'react';
 import './dashboard.css';
-class PostJob extends React.Component {
-    render() { 
+import { useNavigate } from 'react-router-dom';
+function PostJob() {
+    let navigate = useNavigate();
+    function home() {
+        navigate('/dashboard');
+    }
+    function postJob() {
+        navigate('/dashboard');
+    }
+
         return (
         
         <div>
        <div className="row">
     <div className="col-md-12">
       
-    <img className="col-md-4 img" src="./assets/Logo.jpeg" />
+    <img onClick={home} className="col-md-4 img" src="./assets/Logo.jpeg" />
             
             <span className="col-md-8 myJobsTxt">
                 post a job</span>
@@ -73,12 +81,12 @@ class PostJob extends React.Component {
   
 </div>
 
-        <input type="submit" className="btn btn-block btn-login submitButton"  value="post" />
+        <input type="submit" onClick={postJob} className="btn btn-block btn-login submitButton"  value="post" />
   
 
         </div>
         );
-    }
+    
 }
  
 export default PostJob;

@@ -1,16 +1,21 @@
 import React from 'react';
 import './login.css';
-class Profile extends React.Component {
- 
+import { useNavigate } from 'react-router-dom';
+function Profile () {
+    let navigate = useNavigate();
+    function home() {
+        navigate('/dashboard');
+    }
+    function update() {
+        navigate('/dashboard');
+    }
 
-    render() { 
-        
         return( 
         <div>
         <div  className="row">
         <div  className="col-md-12">
           
-                <img  className="col-md-4 img" src="./assets/Logo.jpeg"/>
+        <img onClick={home} className="col-md-4 img" src="./assets/Logo.jpeg" />
     
                 
                 <span  className="col-md-8 span">
@@ -39,7 +44,7 @@ class Profile extends React.Component {
         </div>
         <div  className="row">
             <div  className="col-md-12 form-group">
-                <input type="submit"  className="btn btn-block btn-login" value="update" />
+                <input onClick={update} type="submit"  className="btn btn-block btn-login" value="update" />
             </div>
         </div>
       
@@ -58,7 +63,7 @@ class Profile extends React.Component {
     </div>
     </div>
     );
-    }
+    
 }
  
 export default Profile;
