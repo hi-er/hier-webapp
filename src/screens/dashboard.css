@@ -1,0 +1,99 @@
+img {
+    width: 140px !important;
+    text-align: left;
+    padding: 10px;
+}
+.myJobsTxt {
+    text-align: center;
+    font-family: "SpartanBold";
+    width: 100% !important;
+}
+.postJobBtn {
+    margin: 20px;
+    width: 200px !important;
+    padding: 10px;
+    background-color: #0f3360 !important;
+    color: #fff;
+    font-family: "SpartanMedium";
+    font-size: 24px;
+}
+.padding10 {
+    padding: 10px;
+}
+.h2Txt1 {
+    border-bottom: 2px solid #fff;
+    float: inline-start !important;
+}
+.rowPadding1 {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.heading1 {
+    border: 1px solid #0f3360;
+    border-radius: 5px;
+    height: 140px;
+    margin: 20px;
+    background-color: #fff;
+    padding: 3px;
+    color: #0f3360;
+}
+.headingColor {
+    text-align: center;
+    color: #0f3360;
+}
+.headingIcon {
+    bottom: 0;
+    position: absolute;
+    font-size: 34px;
+    padding: 10px;
+}
+.padding4 {
+    padding: 4px;
+}
+
+.submitButton {
+    margin: 20px;
+    width: 200px;
+    float: right;
+    padding: 10px;
+    background-color: #0f3360 !important;
+    color: #fff !important;
+    font-family: 'SpartanMedium';
+    font-size: 24px;
+}
+
+.jobDetailsContainer{
+    padding-left:20px;padding-right: 20px;
+}
+.jobDetailsInner{
+    border:1px solid #0f3360;
+                                    border-radius: 5px;
+                                    margin:20px;background-color: #fff;padding:3px;color:#0f3360
+}
+.jobDetailsNameContainer{
+    text-align: center;color: #0f3360;
+}
+.jobDetailsContactContainer{
+    padding:10px;font-size: 16px;
+}
+.preferencesText{
+    text-align: left;color: #0f3360;border-bottom: 2px solid #0f3360;
+}
+.skillsText{
+    text-align: left;color: #0f3360;border-bottom: 2px solid #0f3360;top:50
+}
+.fn16p10{
+    font-size: 16px;padding:10px
+}
+.preferencesButton{
+    text-align:center;background-color: #0f3360;color:#fff;border-radius: 10px;margin:7px;padding:4px;
+}
+.skillsButton{
+    text-align:center;background-color: #0f3360;color:#fff;border-radius: 10px;margin-left:20px;margin:7px;margin-right:20px;padding:4px;
+}
+.thumbsUpContainer{
+    height:50%;background-color:#0f3360;margin: 0;padding:0;
+}
+.bt1{
+    border-top:1px solid #fff;
+}
