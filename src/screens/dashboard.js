@@ -1,15 +1,42 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import "./dashboard.css";
 import JobCard from "../components/jobcard";
 import { useNavigate } from 'react-router-dom';
+import {getOpportunitiesByCompany, logOut} from '../firebase/firebase';
 function Dashboard () {
+  const[openopportunities, setOpenOpportunities]= useState([]);
+  const[closedopportunities, setClosedOpportunities]= useState([]);
   let navigate = useNavigate();
    function postJob() {
     navigate("/postjob")
   }
 function signout() {
+  logOut();
   navigate("/")
 }
+useEffect(()=>{
+ getOpportunitiesByCompany().then(data=>
+  {
+    console.log(data);
+    let open=[];
+let closed=[];
+     data.forEach(element => {
+       var today= new Date();
+       var closeDate= new Date(element.closeDate);
+       if(today>closeDate)
+       {
+         closed.push(element);
+       }
+       else{
+         open.push(element);
+       }
+     });
+     setOpenOpportunities(open);
+     setClosedOpportunities(closed);
+  })
+
+}, [])
+
 function profile(params) {
   navigate("/profile")
 }
@@ -35,7 +62,12 @@ function profile(params) {
               </h2>
             </div>
           </div>
-          <JobCard />
+          {
+            openopportunities.map(item=>
+              <JobCard job={item} />
+              )
+          
+          }
         </div>
 
         <div className="row padding10">
@@ -43,7 +75,12 @@ function profile(params) {
           <h2 className="h2Txt1">closed jobs</h2>
           </div>
         </div>
-        <JobCard />
+        {
+            closedopportunities.map(item=>
+              <JobCard job={item} />
+              )
+          
+          }
       </div>
     );
   }

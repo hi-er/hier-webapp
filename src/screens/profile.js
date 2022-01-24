@@ -1,14 +1,19 @@
-import React from 'react';
+import React,{useState, useEffect} from 'react';
 import './login.css';
 import { useNavigate } from 'react-router-dom';
+import{updateCompany} from'../firebase/firebase'
 function Profile () {
     let navigate = useNavigate();
+    const [companyName, setEmail] = useState('');
+    const [url, setPassword] = useState('');
     function home() {
         navigate('/dashboard');
     }
     function update() {
+        updateCompany(companyName, url);
         navigate('/dashboard');
     }
+
 
         return( 
         <div>
@@ -33,13 +38,13 @@ function Profile () {
         <div  className="row">
             <div  className="col-md-12 form-group">
                 <label>company name</label>
-                <input type="text"  className="form-control fontFamily1" />
+                <input type="text" value={companyName} onChange={(e)=>setEmail(e.target.value)}  className="form-control fontFamily1" />
             </div>
         </div>
         <div  className="row">
             <div  className="col-md-12 form-group">
                 <label>url</label>
-                <input type="password" placeholder="password"  className="form-control fontFamily1"/>
+                <input type="text" value={url} onChange={(e)=>setPassword(e.target.value)} className="form-control fontFamily1"/>
             </div>
         </div>
         <div  className="row">

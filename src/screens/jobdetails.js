@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import "./dashboard.css";
 import PreferencesButton from "../components/prefrencesButton";
 import SkillButton from "../components/skillButton";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { getOpportunityByID } from "../firebase/firebase";
 function JobDetails() {
   let navigate = useNavigate();
+  let params= useParams();
+useEffect(()=>{
+
+  getOpportunityByID(params.jobID);
+},[])
   function home() {
     navigate('/dashboard');
 }

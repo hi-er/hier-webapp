@@ -2,10 +2,13 @@ import React from "react";
 import "../screens/dashboard.css";
 import { useNavigate } from 'react-router-dom';
 
-function JobCard() {
+function JobCard(props) {
+const data= props.job;
+console.log("Jobcard data",props);
+
   let navigate = useNavigate();
   function jobDetails() {
-    navigate('/jobdetails')
+    navigate('/jobdetails/'+data.docID)
   }
 
     return (
@@ -13,11 +16,11 @@ function JobCard() {
         <div className="row rowPadding1">
           <div className="col-md-2 heading1">
             <div className="headingColor">
-              <b>swim instructor</b>
+              <b>{data.jobTitle}</b>
             </div>
             <div className="headingIcon">
               <i className="fa fa-users padding4"></i>
-              <span>2</span>
+              <span>{data.appliedUser.length}</span>
             </div>
           </div>
         </div>
