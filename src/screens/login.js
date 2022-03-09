@@ -28,13 +28,13 @@ function Login() {
    }
     return (
         <div>
-        <div className="row">
-        <div className="col-md-12">
+        <div className="row p-2">
+        <div className="col-md-12 ">
           
                 <img className="col-md-4 img" src="./assets/Logo.jpeg"/>
     
                 
-                <span className="col-md-8 span" >connecting people & jobs</span>
+                <span className="col-md-8 span myJobsTxt" >connecting people & jobs</span>
     
           
         </div>
@@ -43,12 +43,12 @@ function Login() {
     
     <div className="simple-login-container">
     
-        <div className="row">
+        <div className="row p-2">
             <div className="col-md-12 form-group">
                 <input type="text" className="form-control" value={email} onChange={(e)=>setEmail(e.target.value)} placeholder="email address" />
             </div>
         </div>
-        <div className="row">
+        <div className="row p-2">
             <div className="col-md-12 form-group">
                 <input type="password" value={password} placeholder="password" onChange={e=> setPassword(e.target.value)} className="form-control" />
             </div>

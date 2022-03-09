@@ -8,6 +8,20 @@ img {
     text-align: center;
     font-family: "SpartanBold";
     width: 100% !important;
+    font-size: 40px;
+    vertical-align: bottom;
+}
+.myJobsTxt1 {
+    text-align: right;
+    font-family: "SpartanBold";
+    width: 100% !important;
+    font-size: 40px;
+    vertical-align: bottom;
+
+}
+.floatRight{
+    float: right;
+
 }
 .postJobBtn {
     margin: 20px;

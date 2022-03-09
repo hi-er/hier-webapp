@@ -50,32 +50,32 @@ if(insertOpportunity(
             
 <div className="simple-login-container">
 
-    <div className="row">
+    <div className="row p-2">
         <div className="col-md-12 form-group">
             <input type="text" value={jobTitle} onChange={(e)=>setJobTitle(e.target.value)}  className="form-control" placeholder="job title"/>
         </div>
     </div>
-    <div className="row">
+    <div className="row p-2">
         <div className="col-md-12 form-group">
             <input type="text" value={address} onChange={(e)=>setAddress(e.target.value)}  className="form-control" placeholder="job location (postal code)"/>
         </div>
     </div>
-    <div className="row">
+    <div className="row p-2">
         <div className="col-md-12 form-group">
             <input type="text" value={maxSalary} onChange={(e)=>setMaxSalary(e.target.value)}  className="form-control" placeholder="maximum salary or hourly rate"/>
         </div>
     </div>
-    <div className="row">
+    <div className="row p-2">
         <div className="col-md-12 form-group">
             <input type="text" value={skills} onChange={(e)=>setSkills(e.target.value)}  className="form-control" placeholder="top skills required for this job"/>
         </div>
     </div>
-    <div className="row">
+    <div className="row p-2">
         <div className="col-md-12 form-group">
             <input type="date" value={closeDate} onChange={(e)=>setCloseDate(e.target.value)}  className="form-control" placeholder="close date"/>
         </div>
     </div>
-    <div className="row">
+    <div className="row p-2">
         <div className="col-md-12 form-group">
             <input type="url" value={url} onChange={(e)=>setUrl(e.target.value)}  className="form-control" placeholder="link to job"/>
         </div>
@@ -90,7 +90,7 @@ if(insertOpportunity(
 
 <div className="col-md-6">
     <div className="simple-login-container">
-        <div className="row">
+        <div className="row p-2">
             <div className="col-md-12 form-group">
                 <textarea rows="6" value={description} onChange={(e)=>setDescription(e.target.value)}  placeholder="job description" className="form-control"></textarea>
             </div>

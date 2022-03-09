@@ -47,9 +47,9 @@ function profile(params) {
             <img className="col-md-4 img" src="./assets/Logo.jpeg" />
 
             <span className="col-md-8 myJobsTxt">my jobs</span>
-<span className="col-md-4 myJobsTxt img"> skylar gast</span>
-<span onClick={profile} className="col-md-4 myJobsTxt img"> | rts</span>
-<span onClick={signout} className="col-md-4 myJobsTxt img"> | signout</span>
+<span className="myJobsTxt1 img"> skylar gast</span>
+<span onClick={profile} className="myJobsTxt1 img"> | rts</span>
+<span onClick={signout} className="myJobsTxt1 img"> | signout</span>
 
           </div>
 
@@ -62,12 +62,16 @@ function profile(params) {
               </h2>
             </div>
           </div>
+          <div className="row">
           {
             openopportunities.map(item=>
+            <span>
               <JobCard job={item} />
+              </span>
               )
           
           }
+          </div>
         </div>
 
         <div className="row padding10">
@@ -75,6 +79,7 @@ function profile(params) {
           <h2 className="h2Txt1">closed jobs</h2>
           </div>
         </div>
+        
         {
             closedopportunities.map(item=>
               <JobCard job={item} />

@@ -12,9 +12,8 @@ console.log("Jobcard data",props);
   }
 
     return (
-      <div onClick={jobDetails}>
-        <div className="row rowPadding1">
-          <div className="col-md-2 heading1">
+     
+          <div className="col-md-2 heading1" onClick={jobDetails}>
             <div className="headingColor">
               <b>{data.jobTitle}</b>
             </div>
@@ -23,8 +22,7 @@ console.log("Jobcard data",props);
               <span>{data.appliedUser.length}</span>
             </div>
           </div>
-        </div>
-      </div>
+        
     );
   }
 
