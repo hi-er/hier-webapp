@@ -1,10 +1,10 @@
 import React from 'react';
-class PreferencesButton extends React.Component {
-    render() { 
+function PreferencesButton(props) {
+    const data= props.data;
         return (<div  className="col-md-2 preferencesButton">
-        full time
+        {data}
   </div>);
-    }
+    
 }
  
 export default PreferencesButton;

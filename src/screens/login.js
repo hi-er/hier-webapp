@@ -11,7 +11,7 @@ function Login() {
    async function tryLogin(){
        try{
      const user= await login(email, password);
-     console.log("this is the user: ", user);
+
      if(user.company)
      {
         navigate("/dashboard")

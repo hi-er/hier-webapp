@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 function JobCard(props) {
 const data= props.job;
-console.log("Jobcard data",props);
+
 
   let navigate = useNavigate();
   function jobDetails() {

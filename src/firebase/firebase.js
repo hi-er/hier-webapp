@@ -20,6 +20,9 @@ import {
   getDoc,
   setDoc,
   query,
+  updateDoc,
+  arrayUnion,
+  arrayRemove,
 } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -65,7 +68,7 @@ onAuthStateChanged(auth, (user) => {
     // User is signed in, see docs for a list of available properties
     // https://firebase.google.com/docs/reference/js/firebase.User
     const uid = user.uid;
-    console.log("AuthStateChanged", user);
+
     localStorage.setItem("isAuthenticated", uid);
     // ...
   } else {
@@ -81,14 +84,13 @@ export const login = async (email, password) => {
   const docSnap = await getDoc(company);
 
   if (docSnap.exists()) {
-    console.log("Document data:", docSnap.data());
     return {
       user: user.user,
       company: docSnap.data(),
     };
   } else {
     // doc.data() will be undefined in this case
-    console.log("No such document!");
+
     return {
       user: user.user,
     };
@@ -109,7 +111,7 @@ export const updateCompany = async (companyName, url) => {
       url: url,
       logo: "",
     });
-    console.log(docSnap);
+
     return true;
   } catch (error) {
     console.log(error.message);
@@ -130,13 +132,18 @@ export const insertOpportunity = async (
 
     const company = doc(db, "company", uuid);
     const docSnap = await getDoc(company);
+    let skillsArray=[];
+    for (let i = 0; i < skills.length; i++) {
+      skillsArray.push(skills[i].value);
+      
+    }
 
     if (docSnap.exists()) {
       const docSnap1 = await addDoc(opportunities, {
         jobTitle: jobTitle,
         address: address,
         maxSalary: maxSalary,
-        skills: skills,
+        skills: skillsArray,
         closeDate: closeDate,
         longDescription: description,
         shortDescription: description,
@@ -147,7 +154,7 @@ export const insertOpportunity = async (
         companyName: docSnap.data().companyName,
         companyID: uuid,
       });
-      console.log(docSnap1);
+
       return true;
     } else {
       return false;
@@ -182,28 +189,74 @@ export const getOpportunitiesByCompany = async () => {
     finalDoc.docID = doc.id;
     data.push(finalDoc);
   });
-  console.log(data);
+
   return data;
+};
+export const getSkillList = async () => {
+  let id="XRvuIgZCfvy4IH8sLxMN";
+  const opportunities1 = doc(db, "skills-list",id);
+  const docSnap = await getDoc(opportunities1);
+  if(docSnap.exists())
+  {
+    console.log("skilllist: ", docSnap.data());
+    return docSnap.data().skills;
+  }
+
+  
 };
 
 export const getOpportunityByID = async (id) => {
   const company = doc(db, "opportunities", id);
   const docSnap = await getDoc(company);
 
-  let data = docSnap.data();
-  let finalData = docSnap.data();
-  finalData.appliedUser = [];
-  for(let element of data.appliedUser)
-  {
-    let response= await getUserDataByID(element);
-    finalData.appliedUser.push(response);
+  if (docSnap.exists()) {
+    let data = docSnap.data();
+    let finalData = docSnap.data();
+    finalData.appliedUser = [];
+    for (let element of data.appliedUser) {
+      let response = await getUserDataByID(element);
+      response.id = element;
+      finalData.appliedUser.push(response);
+    }
+
+    return finalData;
   }
-  console.log(finalData);
-  return finalData;
+};
+export const acceptApplicant = async (id, applicantID) => {
+  const company = doc(db, "opportunities", id);
+  const docSnap = await getDoc(company);
+
+  if (docSnap.exists()) {
+    console.log(applicantID);
+    await updateDoc(company, {
+      accepted: arrayUnion(applicantID),
+      appliedUser: arrayRemove(applicantID),
+    });
+  }
+};
+export const rejectApplicant = async (id, applicantID) => {
+  const company = doc(db, "opportunities", id);
+  const docSnap = await getDoc(company);
+
+  if (docSnap.exists()) {
+    console.log(applicantID);
+    await updateDoc(company, {
+      rejected: arrayUnion(applicantID),
+      appliedUser: arrayRemove(applicantID),
+    });
+  }
 };
 export const getUserDataByID = async (id) => {
   const user = doc(db, "users", id);
   const userSnap = await getDoc(user);
-  console.log(userSnap.data());
+
+  return userSnap.data();
+};
+
+export const getCompanyDataByID = async (id) => {
+  let uuid = localStorage.getItem("isAuthenticated");
+  const user = doc(db, "company", uuid);
+  const userSnap = await getDoc(user);
+
   return userSnap.data();
 };
