@@ -193,12 +193,12 @@ export const getOpportunitiesByCompany = async () => {
   return data;
 };
 export const getSkillList = async () => {
-  let id="XRvuIgZCfvy4IH8sLxMN";
+  let id="BeJypHJBnNyJpJpqeORL";
   const opportunities1 = doc(db, "skills-list",id);
   const docSnap = await getDoc(opportunities1);
   if(docSnap.exists())
   {
-    console.log("skilllist: ", docSnap.data());
+
     return docSnap.data().skills;
   }
 
@@ -213,11 +213,24 @@ export const getOpportunityByID = async (id) => {
     let data = docSnap.data();
     let finalData = docSnap.data();
     finalData.appliedUser = [];
+    finalData.acceptedUser=[];
+    finalData.rejectedUser=[];
     for (let element of data.appliedUser) {
       let response = await getUserDataByID(element);
       response.id = element;
       finalData.appliedUser.push(response);
     }
+    for (let element of data.accepted) {
+      let response = await getUserDataByID(element);
+      response.id = element;
+      finalData.acceptedUser.push(response);
+    }
+    for (let element of data.rejected) {
+      let response = await getUserDataByID(element);
+      response.id = element;
+      finalData.rejectedUser.push(response);
+    }
+
 
     return finalData;
   }
@@ -227,10 +240,32 @@ export const acceptApplicant = async (id, applicantID) => {
   const docSnap = await getDoc(company);
 
   if (docSnap.exists()) {
-    console.log(applicantID);
+
     await updateDoc(company, {
       accepted: arrayUnion(applicantID),
       appliedUser: arrayRemove(applicantID),
+    });
+  }
+};
+
+export const updateOpportunity = async (id,      address,
+  maxSalary,
+  closeDate,
+  description,
+  url,
+  closeJob) => {
+  const company = doc(db, "opportunities", id);
+  const docSnap = await getDoc(company);
+
+  if (docSnap.exists()) {
+
+    await updateDoc(company, {
+     address:address,
+     maxSalary:maxSalary,
+     closeDate:closeDate,
+     longDescription:description,
+     url:url,
+     closeJob:closeJob
     });
   }
 };
@@ -239,7 +274,7 @@ export const rejectApplicant = async (id, applicantID) => {
   const docSnap = await getDoc(company);
 
   if (docSnap.exists()) {
-    console.log(applicantID);
+
     await updateDoc(company, {
       rejected: arrayUnion(applicantID),
       appliedUser: arrayRemove(applicantID),

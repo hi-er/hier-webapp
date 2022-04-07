@@ -30,7 +30,7 @@ function Dashboard() {
       data.forEach((element) => {
         var today = new Date();
         var closeDate = new Date(element.closeDate);
-        if (today > closeDate) {
+        if ( element.closeJob) {
           closed.push(element);
         } else {
           open.push(element);

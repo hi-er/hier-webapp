@@ -8,7 +8,7 @@ const data= props.job;
 
   let navigate = useNavigate();
   function jobDetails() {
-    navigate('/jobdetails/'+data.docID)
+    navigate("/jobDetails/"+data.docID);
   }
 
     return (
@@ -19,7 +19,7 @@ const data= props.job;
             </div>
             <div className="headingIcon">
               <i className="fa fa-users padding4"></i>
-              <span>{data.appliedUser.length}</span>
+              <span>{data.appliedUser.length + (data?.accepted?.length ? data?.accepted.length:0 )+ (data?.rejected?.length ? data?.rejected.length:0 )}</span>
             </div>
           </div>
         
