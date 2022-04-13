@@ -4,6 +4,7 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
+  Navigate,
 
 } from "react-router-dom";
 import Profile from './screens/profile';
@@ -19,13 +20,18 @@ function App() {
     <Router>
 
       <Routes>
+        {isAuthenticated &&(<>
         <Route path="/profile" element={isAuthenticated?<Profile/>:<Login/>}/>
   
         <Route path="/postjob"element={<PostJob/>}/>
         <Route path="/dashboard"element={<Dashboard/>}/>
         <Route path="/jobdetails/:jobID"element={<JobDetails/>}/>
-        <Route path="/"element={<Login/>}/>
+       
         <Route path="/forgotpassword"element={<ForgotPassword/>}/>
+        </>
+        )}
+        <Route path="/login"element={<Login/>}/>
+        <Route path="*"element={<Navigate to={'/login'}/>}/>
       </Routes>
 
   </Router>
