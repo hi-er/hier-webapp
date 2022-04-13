@@ -1,5 +1,5 @@
 import React from "react";
-import "../screens/dashboard.css";
+import "../App";
 import { useNavigate } from 'react-router-dom';
 
 function JobCard(props) {

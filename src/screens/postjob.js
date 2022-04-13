@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./dashboard.css";
+import "../App.css";
 import { useNavigate } from "react-router-dom";
 import { getSkillList, insertOpportunity } from "../firebase/firebase";
 

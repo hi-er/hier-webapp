@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./dashboard.css";
+import "../App.css";
 import JobCard from "../components/jobcard";
 import { useNavigate } from "react-router-dom";
 import {
@@ -24,13 +24,10 @@ function Dashboard() {
   useEffect(() => {
     let uuid = localStorage.getItem("isAuthenticated");
     getOpportunitiesByCompany().then((data) => {
-
       let open = [];
       let closed = [];
       data.forEach((element) => {
-        var today = new Date();
-        var closeDate = new Date(element.closeDate);
-        if ( element.closeJob) {
+        if (element.closeJob) {
           closed.push(element);
         } else {
           open.push(element);
@@ -53,25 +50,22 @@ function Dashboard() {
   return (
     <div>
       <div className="row">
-     
         <div className="col-md-6">
           <img className="col-md-4 img" src="./assets/Logo.jpeg" />
-          <span className="col-md-8 myJobsTxt">my jobs  {" "} </span>
-         
+          <span className="col-md-8 myJobsTxt">my jobs </span>
         </div>
         <div className="col-md-6 profileSection">
-        <div className="float-right">
-       
-       <span className="myJobsTxt1 img">{userName}</span>
-       <span onClick={profile} className="myJobsTxt1 img">
-         {" "}
-         | {companyName}
-       </span>
-       <span onClick={signout} className="myJobsTxt1 img">
-         {" "}
-         | signout
-       </span>
-     </div>
+          <div className="float-right">
+            <span className="myJobsTxt1 img">{userName}</span>
+            <span onClick={profile} className="myJobsTxt1 img">
+              {" "}
+              | {companyName}
+            </span>
+            <span onClick={signout} className="myJobsTxt1 img">
+              {" "}
+              | signout
+            </span>
+          </div>
         </div>
 
         <a onClick={postJob} className="btn btn-block btn-login postJobBtn">

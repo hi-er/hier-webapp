@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./dashboard.css";
+import "../App.css";
 import PreferencesButton from "../components/prefrencesButton";
 import SkillButton from "../components/skillButton";
 import { useNavigate, useParams } from "react-router-dom";
@@ -10,8 +10,7 @@ import {
   rejectApplicant,
   updateOpportunity
 } from "../firebase/firebase";
-import ApplicantCard from "../components/applicantCard";
-import { faThumbsUp, faFolderClosed, faL } from "@fortawesome/free-solid-svg-icons";
+import { faThumbsUp, faFolderClosed } from "@fortawesome/free-solid-svg-icons";
 import Loading from "react-fullscreen-loading";
 function JobDetails() {
   let navigate = useNavigate();
@@ -96,7 +95,31 @@ function JobDetails() {
         closeDate,
         description,
         url,
-        closeJob
+        false
+      )
+    )
+    {
+      setLoading(false);
+alert("job updated ");
+    }
+    else
+    {
+      setLoading(false);
+      alert("there was a problem in your request");
+    }
+
+  }
+  function closeCurrentJob() {
+    setLoading(true);
+    if (
+      updateOpportunity(
+        params.jobID,
+        address,
+        maxSalary,
+        closeDate,
+        description,
+        url,
+        true
       )
     )
     {
@@ -214,7 +237,7 @@ alert("job updated ");
       />
         <input
         type="submit"
-        onClick={updateJob}
+        onClick={closeCurrentJob}
         className="btn btn-block btn-login submitButton"
         value="closeJob"
       />

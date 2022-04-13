@@ -1,11 +1,9 @@
-import logo from './logo.svg';
 import './App.css';
 
 import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Link,
 
 } from "react-router-dom";
 import Profile from './screens/profile';
@@ -14,7 +12,6 @@ import Dashboard from './screens/dashboard';
 import JobDetails from './screens/jobdetails';
 import Login from './screens/login';
 import ForgotPassword from "./screens/forgotPassword";
-import ProtectedRoute from './components/protectedRoute';
 
 function App() {
   const isAuthenticated = localStorage.getItem("isAuthenticated");

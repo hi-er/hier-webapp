@@ -215,21 +215,31 @@ export const getOpportunityByID = async (id) => {
     finalData.appliedUser = [];
     finalData.acceptedUser=[];
     finalData.rejectedUser=[];
-    for (let element of data.appliedUser) {
+    
+    if(data?.appliedUser)
+    {
+    for (let element of data?.appliedUser) {
       let response = await getUserDataByID(element);
       response.id = element;
       finalData.appliedUser.push(response);
     }
-    for (let element of data.accepted) {
-      let response = await getUserDataByID(element);
-      response.id = element;
-      finalData.acceptedUser.push(response);
+  }
+    if(data?.accepted)
+    {
+      for (let element of data?.accepted) {
+        let response = await getUserDataByID(element);
+        response.id = element;
+        finalData.acceptedUser.push(response);
+      }
     }
-    for (let element of data.rejected) {
+    if(data?.rejected)
+    {
+    for (let element of data?.rejected) {
       let response = await getUserDataByID(element);
       response.id = element;
       finalData.rejectedUser.push(response);
     }
+  }
 
 
     return finalData;
