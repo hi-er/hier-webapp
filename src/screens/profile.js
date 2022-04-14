@@ -18,18 +18,21 @@ function Profile() {
   const [companyName, setCompanyName] = useState("");
   const [url, setURL] = useState("");
   const [selectedFile, setSelectedFile] = useState("");
-  const [fileURL, setFileURL] = useState("")
+  const [fileURL, setFileURL] = useState("");
+  const [firebaseFileUrl, setFirebaseFileUrl] = useState("");
   function home() {
     navigate("/dashboard");
   }
   function update() {
-    updateCompany(companyName, url);
+    updateCompany(companyName, url, firebaseFileUrl);
     navigate("/dashboard");
   }
- async  function upload() {
+  async function upload() {
+    setFirebaseFileUrl("images/" + selectedFile.name);
     const file = await uploadFile(selectedFile);
     setFileURL(file);
     console.log("this is file: ", file);
+    updateCompany(companyName, url, firebaseFileUrl);
   }
 
   return (
