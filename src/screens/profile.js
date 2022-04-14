@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
 import "./login.css";
 import { useNavigate } from "react-router-dom";
-import { getCompanyDataByID, updateCompany } from "../firebase/firebase";
+import {
+  getCompanyDataByID,
+  updateCompany,
+  uploadFile,
+} from "../firebase/firebase";
 function Profile() {
   let navigate = useNavigate();
   useEffect(() => {
+    console.log(fileURL);
     getCompanyDataByID().then((data) => {
       setCompanyName(data.companyName);
       setURL(data.url);
@@ -12,12 +17,19 @@ function Profile() {
   }, []);
   const [companyName, setCompanyName] = useState("");
   const [url, setURL] = useState("");
+  const [selectedFile, setSelectedFile] = useState("");
+  const [fileURL, setFileURL] = useState("")
   function home() {
     navigate("/dashboard");
   }
   function update() {
     updateCompany(companyName, url);
     navigate("/dashboard");
+  }
+ async  function upload() {
+    const file = await uploadFile(selectedFile);
+    setFileURL(file);
+    console.log("this is file: ", file);
   }
 
   return (
@@ -74,8 +86,23 @@ function Profile() {
 
         <div className="col-md-6">
           <div className="simple-login-container textCenter">
-            <input accept="image/*" type="file" id="imgInp" />
-            <img id="blah" src="#" className="blahImage1" />
+            <input
+              accept="image/*"
+              type="file"
+              defaultValue={selectedFile}
+              onChange={(e) => {
+                console.log(e.target.files[0]);
+                setSelectedFile(e.target.files[0]);
+              }}
+              id="imgInp"
+            />
+            <img id="blah" src={fileURL} className="blahImage1" />
+            <input
+              onClick={upload}
+              type="submit"
+              className="btn btn-block btn-login"
+              value="upload"
+            />
           </div>
         </div>
       </div>

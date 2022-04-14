@@ -10,6 +10,7 @@ import {
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import { getStorage, ref, uploadBytesResumable, getDownloadURL, uploadBytes } from "firebase/storage";
 import {
   getFirestore,
   collection,
@@ -44,6 +45,8 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth();
 const db = getFirestore();
+const storage= getStorage();
+
 
 initializeApp(firebaseConfig);
 let loginUser = "";
@@ -53,15 +56,24 @@ const company = collection(db, "company");
 const opportunities = collection(db, "opportunities");
 const skillsList = collection(db, "skills-list");
 const users = collection(db, "users");
+const metadata = {
+  contentType: 'image/jpeg'
+};
 
-export const logOut = () => {
-  signOut(auth)
-    .then(() => {
-      localStorage.removeItem("isAuthenticated");
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+export const uploadFile=async (file)=>{
+  const storageRef = ref(storage, 'images/' + file.name);
+ 
+  const snapshot= await uploadBytes(storageRef, file);
+  const downloadURL= await getDownloadURL(snapshot.ref);
+  console.log("downloadUrl", downloadURL);
+  return downloadURL;
+}
+
+export const logOut = async () => {
+  await signOut(auth)
+   
+  await localStorage.removeItem("isAuthenticated");
+   
 };
 onAuthStateChanged(auth, (user) => {
   if (user) {

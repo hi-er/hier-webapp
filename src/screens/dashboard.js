@@ -14,12 +14,12 @@ function Dashboard() {
   const [userName, setUserName] = useState([]);
   const [companyName, setCompanyName] = useState([]);
   let navigate = useNavigate();
-  function postJob() {
+  function  postJob() {
     navigate("/postjob");
   }
-  function signout() {
-    logOut();
-    navigate("/");
+  async function signout() {
+    await logOut();
+    navigate("/login");
   }
   useEffect(() => {
     let uuid = localStorage.getItem("isAuthenticated");

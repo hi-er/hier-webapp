@@ -6,12 +6,21 @@ import "./login.css";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const isAuthenticated = localStorage.getItem("isAuthenticated");
   let navigate = useNavigate();
+  useEffect(() => {
+    if(isAuthenticated)
+    {
+      navigate("/dashboard");
+    }
+  }, [])
+  
   async function tryLogin() {
     try {
       const user = await login(email, password);
 
       if (user.company) {
+
         navigate("/dashboard");
       } else {
         navigate("/profile");

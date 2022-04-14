@@ -21,6 +21,7 @@ function App() {
 
       <Routes>
         {isAuthenticated &&(<>
+
         <Route path="/profile" element={isAuthenticated?<Profile/>:<Login/>}/>
   
         <Route path="/postjob"element={<PostJob/>}/>
@@ -28,10 +29,12 @@ function App() {
         <Route path="/jobdetails/:jobID"element={<JobDetails/>}/>
        
         <Route path="/forgotpassword"element={<ForgotPassword/>}/>
+
         </>
         )}
-        <Route path="/login"element={<Login/>}/>
+        
         <Route path="*"element={<Navigate to={'/login'}/>}/>
+        <Route path="/login"element={<Login/>}/>
       </Routes>
 
   </Router>
