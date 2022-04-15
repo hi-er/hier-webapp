@@ -64,6 +64,7 @@ export const uploadFile=async (file)=>{
   const storageRef = ref(storage, 'images/' + file.name);
  
   const snapshot= await uploadBytes(storageRef, file);
+  console.log("snapshot",snapshot);
   const downloadURL= await getDownloadURL(snapshot.ref);
   console.log("downloadUrl", downloadURL);
   return downloadURL;
@@ -114,14 +115,15 @@ export const login = async (email, password) => {
   // });
   return user.user;
 };
-export const updateCompany = async (companyName, url) => {
+export const updateCompany = async (companyName, url, logo) => {
   try {
+    console.log(url);
     let uuid = localStorage.getItem("isAuthenticated");
     const company = doc(db, "company", uuid);
-    const docSnap = await addDoc(company, {
+    const docSnap = await setDoc(company, {
       companyName: companyName,
       url: url,
-      logo: "",
+      logo: logo,
     });
 
     return true;

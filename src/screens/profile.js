@@ -28,11 +28,12 @@ function Profile() {
     navigate("/dashboard");
   }
   async function upload() {
-    setFirebaseFileUrl("images/" + selectedFile.name);
+   
     const file = await uploadFile(selectedFile);
     setFileURL(file);
-    console.log("this is file: ", file);
-    updateCompany(companyName, url, firebaseFileUrl);
+    setFirebaseFileUrl("images/" + selectedFile.name);
+    console.log("this is file: ", firebaseFileUrl);
+    updateCompany(companyName, url, "images/" + selectedFile.name);
   }
 
   return (
