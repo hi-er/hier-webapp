@@ -124,7 +124,7 @@ alert("job updated ");
     )
     {
       setLoading(false);
-alert("job updated ");
+      alert("job closed");
     }
     else
     {
@@ -233,13 +233,13 @@ alert("job updated ");
         type="submit"
         onClick={updateJob}
         className="btn btn-block btn-login submitButton"
-        value="post"
+        value="update job"
       />
         <input
         type="submit"
         onClick={closeCurrentJob}
         className="btn btn-block btn-login submitButton"
-        value="closeJob"
+        value="close job"
       />
       </div>
       </div>

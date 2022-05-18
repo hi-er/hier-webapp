@@ -12,12 +12,13 @@ function PostJob() {
       for (let index = 0; index < data.length; index++) {
         skillsArray.push({
           value: data[index],
-          label: data[index],
+          label: data[index]
         });
       }
       setSkills(skillsArray);
     });
   }, []);
+
   let navigate = useNavigate();
   const [jobTitle, setJobTitle] = useState("");
   const [address, setAddress] = useState("");
@@ -110,6 +111,7 @@ function PostJob() {
                   isMulti={true}
                   onChange={setSelectedOption}
                   options={skills}
+                  className="dropdown"                 
                 />
               </div>
             </div>

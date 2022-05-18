@@ -4,6 +4,9 @@ img {
     padding: 10px;
     cursor: pointer;
   }
+span.link:hover {
+  color: #0f3360;
+}
   .myJobsTxt {
     text-align: center;
     font-family: "SpartanBold";
@@ -162,5 +165,11 @@ img {
   }
   .profileSection {
     position: relative;
+  }
+  .row-fix {
+    margin: auto !important
+  }
+  .dropdown {
+    color:black;
   }
   

@@ -49,21 +49,21 @@ function Dashboard() {
   }
   return (
     <div>
-      <div className="row">
+      <div className="row row-fix">
         <div className="col-md-6">
           <img className="col-md-4 img" src="./assets/Logo.jpeg" />
           <span className="col-md-8 myJobsTxt">my jobs </span>
         </div>
         <div className="col-md-6 profileSection">
           <div className="float-right">
-            <span className="myJobsTxt1 img">{userName}</span>
-            <span onClick={profile} className="myJobsTxt1 img">
-              {" "}
-              | {companyName}
+            <span className="myJobsTxt1 img link">{userName}</span>
+            <span className="myJobsTxt1">{" | "}</span>
+            <span onClick={profile} className="myJobsTxt1 img link">              
+              {companyName}
             </span>
-            <span onClick={signout} className="myJobsTxt1 img">
-              {" "}
-              | signout
+            <span className="myJobsTxt1">{" | "}</span>
+            <span onClick={signout} className="myJobsTxt1 img link">              
+              signout
             </span>
           </div>
         </div>
@@ -75,7 +75,7 @@ function Dashboard() {
         <div className="row padding10">
           <div className="col-md-12 ">
             <h2 className="h2Txt1">
-              connect with people intersted in your jobs
+              open jobs
             </h2>
           </div>
         </div>
